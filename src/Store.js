@@ -124,7 +124,7 @@ function createTabBarOptions({
     tabStyle,
   };
 }
-function createNavigationOptions(params) {
+function createNavigationOptions(params, transitionConfig) {
   const {
     type,
     cardStyle,
@@ -202,6 +202,7 @@ function createNavigationOptions(params) {
       headerTitle: getValue(navigationParams.renderTitle || renderTitle || params.renderTitle, state),
       headerTitleStyle: headerTitleStyle || titleStyle,
       title: getValue(navigationParams.title || title || getTitle, state),
+      transitionConfig: transitionConfig,
     };
 
     const NavBarFromParams = navigationParams.renderNavigationBar || navigationParams.navBar;
@@ -863,10 +864,12 @@ export default class NavigationStore {
     return createStackNavigator(res, {
       mode,
       initialRouteParams,
-      initialRouteName,
-      ...commonProps,
-      transitionConfig,
-      navigationOptions: createNavigationOptions(commonProps),
+      // initialRouteName,
+      // ...commonProps,
+      // transitionConfig,
+      // navigationOptions: createNavigationOptions(commonProps),
+      navigationOptions: createNavigationOptions(commonProps, transitionConfig),
+
     });
   };
 
